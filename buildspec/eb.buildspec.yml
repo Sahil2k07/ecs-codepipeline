@@ -1,0 +1,32 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo "Installing Go 1.25.3..."
+      - wget https://dl.google.com/go/go1.25.3.linux-amd64.tar.gz
+      - sudo rm -rf /usr/local/go
+      - sudo tar -C /usr/local -xzf go1.25.3.linux-amd64.tar.gz
+      - export PATH=/usr/local/go/bin:$PATH
+      - go version
+      - echo "Installing Bun..."
+      - curl -fsSL https://bun.sh/install | bash
+      - export PATH="$HOME/.bun/bin:$PATH"
+      - bun --version
+
+  pre_build:
+    commands:
+      - echo "Preparing build..."
+      - export PATH=/usr/local/go/bin:$HOME/.bun/bin:$PATH
+
+  build:
+    commands:
+      - echo "Running Makefile..."
+      - export PATH=/usr/local/go/bin:$HOME/.bun/bin:$PATH
+      - make all
+      - echo "Build complete."
+
+artifacts:
+  base-directory: build
+  files:
+    - "**/*"

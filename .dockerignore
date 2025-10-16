@@ -1,0 +1,8 @@
+node_modules
+vendor
+dist
+build
+README.md 
+.git
+.gitignore
+app.zip
