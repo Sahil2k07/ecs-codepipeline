@@ -10,7 +10,7 @@ COPY client/. .
 
 RUN bun run build
 
-FROM golang:1.24.7-trixie AS be-builder
+FROM golang:1.25.3-alpine3.22 AS be-builder
 
 WORKDIR /app
 
