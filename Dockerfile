@@ -2,6 +2,8 @@ FROM oven/bun:latest AS fe-builder
 
 WORKDIR /app
 
+ENV ESBUILD_BINARY_PATH=/usr/bin/node
+
 COPY client/package.json .
 
 RUN bun install
